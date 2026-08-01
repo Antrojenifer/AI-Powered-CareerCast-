@@ -89,56 +89,37 @@ def get_skill_gaps(user_skills: List[str], career: str) -> Dict:
 
 def predict_career(skills: str, degree: str = "", experience: str = "0") -> Dict:
 
-    model, vectorizer = load_artifacts()
-
-    feature_text = prepare_features(skills, degree, experience)
-    X = vectorizer.transform([feature_text])
-
-    probabilities = model.predict_proba(X)[0]
-    classes = model.classes_
-
-    career_probs = sorted(
-        zip(classes, probabilities),
-        key=lambda x: x[1],
-        reverse=True
-    )
-
-    user_skill_list = [
-        s.strip()
-        for s in skills.split(",")
-        if s.strip()
-    ]
+    user_skill_list = [s.strip() for s in skills.split(",") if s.strip()]
 
     top_careers = []
 
     # Calculate skill match for every career
-    for career, prob in career_probs:
+    for career in CAREER_SKILLS.keys():
 
         gap = get_skill_gaps(user_skill_list, career)
 
         top_careers.append({
             "career": career,
-            "probability": round(prob * 100, 1),
+            "probability": gap["match_percent"],
             "skill_match": gap["match_percent"],
             "missing_skills": gap["missing"][:6],
             "matched_skills": gap["matched"]
         })
 
-    # Sort by skill match percentage
-    top_careers = sorted(
-        top_careers,
+    # Sort by highest skill match
+    top_careers.sort(
         key=lambda x: x["skill_match"],
         reverse=True
     )
 
-    # Keep only Top 5
+    # Show only Top 5
     top_careers = top_careers[:5]
 
     top = top_careers[0]
 
     return {
         "predicted_career": top["career"],
-        "confidence": top["probability"],
+        "confidence": top["skill_match"],
         "top_careers": top_careers,
         "user_skills": user_skill_list
     }
