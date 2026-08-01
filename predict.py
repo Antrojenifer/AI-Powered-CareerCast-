@@ -17,7 +17,7 @@ VECTORIZER_PATH = os.path.join(BASE_DIR, "models", "vectorizer.pkl")
 _model = None
 _vectorizer = None
 
-# Recommended skills for each career (for skill-gap analysis)
+# Recommended skills for each career
 CAREER_SKILLS = {
     "Data Scientist": ["Python", "Machine Learning", "Pandas", "Numpy", "Scikit-Learn", "Statistics", "Sql"],
     "Data Analyst": ["Sql", "Power Bi", "Excel", "Tableau", "Python", "Data Analysis", "Statistics"],
@@ -42,11 +42,14 @@ CAREER_SKILLS = {
 
 def load_artifacts():
     global _model, _vectorizer
+
     if _model is None or _vectorizer is None:
         if not os.path.exists(MODEL_PATH) or not os.path.exists(VECTORIZER_PATH):
             raise FileNotFoundError("Model not found. Run ml/train.py first.")
+
         _model = joblib.load(MODEL_PATH)
         _vectorizer = joblib.load(VECTORIZER_PATH)
+
     return _model, _vectorizer
 
 
@@ -54,19 +57,28 @@ def prepare_features(skills: str, degree: str, experience: str) -> str:
     skills = skills or ""
     degree = degree or ""
     experience = experience or "0"
+
     return f"{skills} {degree} {experience} years experience"
 
 
 def get_skill_gaps(user_skills: List[str], career: str) -> Dict:
-    """Return missing skills and match percentage for a career."""
+    """Return matched skills, missing skills and match percentage."""
+
     required = CAREER_SKILLS.get(career, [])
+
     if not required:
-        return {"missing": [], "match_percent": 0, "matched": []}
+        return {
+            "matched": [],
+            "missing": [],
+            "match_percent": 0
+        }
 
     user_lower = [s.lower() for s in user_skills]
+
     matched = [s for s in required if s.lower() in user_lower]
     missing = [s for s in required if s.lower() not in user_lower]
-    match_percent = round(len(matched) / len(required) * 100) if required else 0
+
+    match_percent = round((len(matched) / len(required)) * 100)
 
     return {
         "matched": matched,
@@ -76,6 +88,7 @@ def get_skill_gaps(user_skills: List[str], career: str) -> Dict:
 
 
 def predict_career(skills: str, degree: str = "", experience: str = "0") -> Dict:
+
     model, vectorizer = load_artifacts()
 
     feature_text = prepare_features(skills, degree, experience)
@@ -84,27 +97,42 @@ def predict_career(skills: str, degree: str = "", experience: str = "0") -> Dict
     probabilities = model.predict_proba(X)[0]
     classes = model.classes_
 
-    career_probs = sorted(zip(classes, probabilities), key=lambda x: x[1], reverse=True)
+    career_probs = sorted(
+        zip(classes, probabilities),
+        key=lambda x: x[1],
+        reverse=True
+    )
 
-    user_skill_list = [s.strip() for s in skills.split(",") if s.strip()]
+    user_skill_list = [
+        s.strip()
+        for s in skills.split(",")
+        if s.strip()
+    ]
 
     top_careers = []
-    for career, prob in career_probs[:5]:
-              gap = get_skill_gaps(user_skill_list, career)
-              top_careers.append({
-                "career": career,
-                "probability": round(prob * 100, 1),
-                "skill_match": gap["match_percent"],
-                "missing_skills": gap["missing"][:6],
-                "matched_skills": gap["matched"]
+
+    # Calculate skill match for every career
+    for career, prob in career_probs:
+
+        gap = get_skill_gaps(user_skill_list, career)
+
+        top_careers.append({
+            "career": career,
+            "probability": round(prob * 100, 1),
+            "skill_match": gap["match_percent"],
+            "missing_skills": gap["missing"][:6],
+            "matched_skills": gap["matched"]
         })
 
-    # Sort careers by skill match percentage
+    # Sort by skill match percentage
     top_careers = sorted(
         top_careers,
         key=lambda x: x["skill_match"],
         reverse=True
     )
+
+    # Keep only Top 5
+    top_careers = top_careers[:5]
 
     top = top_careers[0]
 
