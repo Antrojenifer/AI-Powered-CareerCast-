@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Powered CareerCast — Career Path Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-ring"></div>
+        <p>Analyzing your profile&hellip;</p>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-briefcase-fill brand-icon"></i>
+                AI Powered Career<span>Cast</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <div class="hero-eyebrow">
+                <i class="bi bi-stars"></i> AI-Powered Career Matching
+            </div>
+            <h1 class="hero-title mb-3">Find your best career path</h1>
+            <p class="hero-sub mb-0">
+                Upload your resume or paste your skills. Our AI matches you to the right career domains and tells you exactly what to learn next.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flash messages -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Card -->
+    <div class="container pb-5" style="padding-top: 2rem;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+
+                <div class="main-card">
+                    <div class="p-4 p-md-5">
+
+                        <!-- Mode toggle -->
+                        <div class="mode-tabs">
+                            <button class="mode-tab active" id="skillsTab" type="button">
+                                <i class="bi bi-keyboard"></i> Paste Skills
+                            </button>
+                            <button class="mode-tab" id="resumeTab" type="button">
+                                <i class="bi bi-file-earmark-arrow-up"></i> Upload Resume
+                            </button>
+                        </div>
+
+                        <form method="POST" action="{{ url_for('analyze') }}" enctype="multipart/form-data" id="mainForm">
+                            <input type="hidden" name="input_mode" id="inputMode" value="skills">
+
+                            <!-- Profile row -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Your name</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Email <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+                                    <input type="email" name="email" class="form-control" placeholder="Your Email">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Years of experience</label>
+                                    <input type="number" name="experience" class="form-control" min="0" max="40" placeholder="0" value="0">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Education <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+                                    <input type="text" name="degree" class="form-control" placeholder="Your Education">
+                                </div>
+                            </div>
+
+                            <!-- Panes -->
+                            <div id="skillsPane">
+                                <label class="form-label">Your skills</label>
+                                <textarea name="skills" class="form-control skills-textarea" rows="4"
+                                    placeholder="Python, SQL, Power BI, Machine Learning, HTML, CSS…"></textarea>
+                                <p class="form-hint">Separate skills with commas. Free-form text also works.</p>
+                            </div>
+
+                            <div id="resumePane" style="display:none;">
+                                <label class="form-label">Upload resume</label>
+                                <div class="upload-zone" id="uploadZone">
+                                    <div class="upload-icon">
+                                        <i class="bi bi-cloud-arrow-up"></i>
+                                    </div>
+                                    <p class="upload-title">Drop your resume here</p>
+                                    <p class="upload-sub">PDF or DOCX · Max 5 MB</p>
+                                    <input type="file" name="resume" id="resumeInput" class="d-none" accept=".pdf,.docx">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        onclick="document.getElementById('resumeInput').click(); event.stopPropagation();"
+                                        style="border-radius:50px; font-size:0.8rem; padding: 5px 14px;">
+                                        Browse files
+                                    </button>
+                                    <div id="fileName"></div>
+                                </div>
+                                <p class="form-hint mt-2">Skills, education and experience are extracted automatically.</p>
+                            </div>
+
+                            <div style="margin-top: 1.5rem;">
+                                <button type="submit" class="btn-analyze" id="analyzeBtn">
+                                    <i class="bi bi-stars"></i>
+                                    Analyze &amp; Predict Career Paths
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Feature pills -->
+                <div class="row g-2 features-row">
+                    <div class="col-6 col-md-3">
+                        <div class="feature-pill">
+                            <div class="pill-icon"><i class="bi bi-file-earmark-text"></i></div>
+                            <div class="pill-label">Resume Parsing</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="feature-pill">
+                            <div class="pill-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                            <div class="pill-label">Career Ranking</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="feature-pill">
+                            <div class="pill-icon"><i class="bi bi-lightbulb"></i></div>
+                            <div class="pill-label">Skill Gap Tips</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="feature-pill">
+                            <div class="pill-icon"><i class="bi bi-bar-chart"></i></div>
+                            <div class="pill-label">Match Score</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 border-top" style="background:var(--white); margin-top: 2rem;">
+        <small>AI Powered CareerCast &middot; AI Career Path Prediction System</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mode switching
+        const skillsTab = document.getElementById('skillsTab');
+        const resumeTab = document.getElementById('resumeTab');
+        const skillsPane = document.getElementById('skillsPane');
+        const resumePane = document.getElementById('resumePane');
+        const inputMode = document.getElementById('inputMode');
+
+        skillsTab.addEventListener('click', () => {
+            skillsTab.classList.add('active');
+            resumeTab.classList.remove('active');
+            skillsPane.style.display = '';
+            resumePane.style.display = 'none';
+            inputMode.value = 'skills';
+        });
+        resumeTab.addEventListener('click', () => {
+            resumeTab.classList.add('active');
+            skillsTab.classList.remove('active');
+            resumePane.style.display = '';
+            skillsPane.style.display = 'none';
+            inputMode.value = 'resume';
+        });
+
+        // File upload
+        const zone = document.getElementById('uploadZone');
+        const input = document.getElementById('resumeInput');
+        const fileNameEl = document.getElementById('fileName');
+
+        zone.addEventListener('click', () => input.click());
+        zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                input.files = e.dataTransfer.files;
+                setFileName(e.dataTransfer.files[0].name);
+            }
+        });
+        input.addEventListener('change', () => {
+            if (input.files.length) setFileName(input.files[0].name);
+        });
+        function setFileName(name) {
+            fileNameEl.innerHTML = `<span class="file-selected"><i class="bi bi-check-circle-fill"></i>${name}</span>`;
+        }
+
+        // Loading state
+        const form = document.getElementById('mainForm');
+        const overlay = document.getElementById('loadingOverlay');
+        const btn = document.getElementById('analyzeBtn');
+        form.addEventListener('submit', () => {
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-ring" style="width:20px;height:20px;border-width:2px;"></span> Analyzing…';
+            overlay.classList.add('active');
+        });
+    </script>
+</body>
+</html>

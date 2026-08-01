@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results — AI Powered CareerCast</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar dash-nav sticky-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-briefcase-fill brand-icon"></i>
+                AI Powered Career<span>Cast</span>
+            </a>
+            <a href="/" class="btn-back">
+                <i class="bi bi-arrow-left"></i> New analysis
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Page header -->
+        <div class="dash-header">
+            <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
+                <div>
+                    <h1>Your Career Report</h1>
+                    <p class="sub">Personalized analysis for <strong>{{ name }}</strong></p>
+                </div>
+                <div class="score-chip">
+                    {% set top = top_careers[0] %}
+                    <div class="score-number">{{ top.skill_match }}%</div>
+                    <div class="score-label">Skill Match</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile card -->
+        <div class="profile-card">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="profile-avatar"><i class="bi bi-person"></i></div>
+                    <div>
+                        <p class="profile-name">{{ name }}</p>
+                        <p class="profile-meta">
+                            {% if email %}{{ email }} &middot; {% endif %}
+                            {% if degree %}{{ degree }} &middot; {% endif %}
+                            {{ experience }} yr{{ 's' if experience|int != 1 else '' }} experience
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <span class="best-fit-badge">
+                        <i class="bi bi-trophy-fill"></i>
+                        {{ predicted_career }}
+                    </span>
+                </div>
+            </div>
+            {% if skills %}
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                {% for skill in skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Main grid -->
+        <div class="row g-4 mb-4">
+
+            <!-- Career Rankings -->
+            <div class="col-lg-7">
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <h5>
+                            <span class="header-icon" style="background:#FEF9C3; color:#A16207;">
+                                <i class="bi bi-trophy"></i>
+                            </span>
+                            Recommended Career Domains
+                        </h5>
+                        <p>Ranked by how well your skills match each path</p>
+                    </div>
+                    <div class="section-card-body">
+                        {% set bar_classes = ['bar-1','bar-2','bar-3','bar-4','bar-5'] %}
+                        {% set rank_classes = ['rank-1','rank-2','rank-3','rank-other','rank-other'] %}
+                        {% for item in top_careers %}
+                        <div class="career-item">
+                            <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="career-rank {{ rank_classes[loop.index0] }}">{{ loop.index }}</span>
+                                    <span class="career-name">{{ item.career }}</span>
+                                </div>
+                                <div class="text-end" style="flex-shrink:0;">
+                                    <div class="career-prob">#{{ loop.index }} match</div>
+                                    <div class="career-match-pct">{{ item.skill_match }}% skill overlap</div>
+                                </div>
+                            </div>
+                            <div class="career-bar">
+                                <div class="career-bar-fill {{ bar_classes[loop.index0] }}"
+                                     style="width: {{ item.skill_match if item.skill_match > 0 else 5 }}%;"></div>
+                            </div>
+                            {% if item.missing_skills %}
+                            <div class="gap-chips">
+                                <span style="font-size:0.7rem; color:var(--text-muted); margin-right:4px;">Learn next:</span>
+                                {% for s in item.missing_skills %}
+                                <span class="gap-chip">{{ s }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="strong-match">
+                                <i class="bi bi-check-circle-fill"></i> Strong skill alignment
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="col-lg-5 d-flex flex-column gap-4">
+
+                <!-- Top Recommendation -->
+                <div class="rec-card">
+                    <div class="rec-label"><i class="bi bi-stars me-1"></i>Top recommendation</div>
+                    <div class="rec-career">{{ predicted_career }}</div>
+                    <div class="rec-sub">Based on your skills and profile, this is your strongest career match.</div>
+
+                    {% set top = top_careers[0] %}
+                    {% if top.missing_skills %}
+                    <div class="skill-pills-section">
+                        <h6>Skills to add next</h6>
+                        {% for s in top.missing_skills %}
+                        <span class="learn-chip"><i class="bi bi-plus"></i>{{ s }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <span class="strong-match-rec">
+                        <i class="bi bi-emoji-smile-fill"></i>
+                        You already have most required skills!
+                    </span>
+                    {% endif %}
+                </div>
+
+                <!-- Model Performance -->
+                <div class="metrics-card">
+                    <div class="section-card-header" style="padding: 1.25rem 1.5rem 0.75rem;">
+                        <h5>
+                            <span class="header-icon" style="background:var(--blue-light); color:var(--blue);">
+                                <i class="bi bi-speedometer2"></i>
+                            </span>
+                            Model Performance
+                        </h5>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-cell">
+                            <div class="metric-value" style="color:var(--blue);">{{ metrics.accuracy }}%</div>
+                            <div class="metric-name">Accuracy</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="metric-value" style="color:var(--green);">{{ metrics.precision }}%</div>
+                            <div class="metric-name">Precision</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="metric-value" style="color:#0891B2;">{{ metrics.recall }}%</div>
+                            <div class="metric-name">Recall</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="metric-value" style="color:var(--amber);">{{ metrics.f1_score }}%</div>
+                            <div class="metric-name">F1 Score</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-row">
+            <a href="/" class="btn-new-analysis">
+                <i class="bi bi-arrow-repeat"></i> Analyze another profile
+            </a>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 border-top" style="background:var(--white); margin-top: 1rem;">
+        <small>AI Powered CareerCast &middot; Professional AI Career Recommendation System</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate progress bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.career-bar-fill').forEach(bar => {
+                const target = bar.style.width;
+                bar.style.width = '0%';
+                requestAnimationFrame(() => {
+                    setTimeout(() => { bar.style.width = target; }, 80);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
