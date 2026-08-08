@@ -25,6 +25,25 @@ METRICS_PATH = os.path.join(MODEL_DIR, "metrics.json")
 
 _cache: Dict = {}
 
+def _patch_sklearn_model(model):
+    """Fix sklearn version mismatch (multi_class removed in newer versions)."""
+    try:
+        if hasattr(model, "named_steps"):
+            return model
+        # XGB bundle
+        if isinstance(model, dict) and "model" in model:
+            return model
+        if not hasattr(model, "multi_class"):
+            try:
+                object.__setattr__(model, "multi_class", "auto")
+            except Exception:
+                model.__dict__["multi_class"] = "auto"
+    except Exception:
+        pass
+    return model
+
+
+
 CAREER_SKILLS = {
     "Data Scientist": ["Python", "Machine Learning", "Pandas", "Numpy", "Scikit-Learn", "Statistics", "Sql"],
     "Data Analyst": ["Sql", "Power Bi", "Excel", "Tableau", "Python", "Data Analysis", "Statistics"],
@@ -119,6 +138,8 @@ def _load_best_bundle() -> dict:
     if os.path.exists(BEST_PATH):
         try:
             bundle = joblib.load(BEST_PATH)
+            if isinstance(bundle, dict) and "model" in bundle:
+                bundle["model"] = _patch_sklearn_model(bundle["model"])
             _cache["best"] = bundle
             return bundle
         except Exception as e:
@@ -130,7 +151,7 @@ def _load_best_bundle() -> dict:
         path = os.path.join(BASE_DIR, "career_model.pkl")
     if not os.path.exists(path):
         raise FileNotFoundError("No model found. Ensure models/career_model.pkl exists.")
-    model = joblib.load(path)
+    model = _patch_sklearn_model(joblib.load(path))
     bundle = {"name": "logistic_regression", "model": model, "feature": "tfidf"}
     _cache["best"] = bundle
     return bundle
