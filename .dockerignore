@@ -1,7 +1,6 @@
-__pycache__/
+__pycache__
 *.pyc
 .git
-.gitignore
-venv/
-.env
-uploads/
+uploads/*
+!uploads/.gitkeep
+*.zip

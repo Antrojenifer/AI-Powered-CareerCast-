@@ -15,14 +15,6 @@
       "recall": 94.0,
       "f1_score": 93.7,
       "coverage": 94.0,
-      "best_params": {
-        "n_estimators": "150",
-        "min_samples_split": "2",
-        "min_samples_leaf": "2",
-        "max_features": "sqrt",
-        "max_depth": "20"
-      },
-      "cv_best_score": 90.0,
       "model_name": "random_forest"
     },
     "xgboost": {
@@ -31,14 +23,6 @@
       "recall": 91.0,
       "f1_score": 90.7,
       "coverage": 91.0,
-      "best_params": {
-        "subsample": "0.7",
-        "n_estimators": "150",
-        "max_depth": "3",
-        "learning_rate": "0.05",
-        "colsample_bytree": "0.7"
-      },
-      "cv_best_score": 78.2,
       "model_name": "xgboost"
     }
   },
