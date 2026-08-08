@@ -120,7 +120,7 @@ def analyze():
         return redirect(url_for("index"))
     except Exception as e:
         logger.error(f"Error: {e}", exc_info=True)
-        flash("Something went wrong. Please try again.", "danger")
+        flash(f"Error: {type(e).__name__}: {e}", "danger")
         return redirect(url_for("index"))
 
 
@@ -168,6 +168,25 @@ def health():
 def too_large(e):
     flash("File too large. Max 5 MB allowed.", "danger")
     return redirect(url_for("index")), 413
+
+
+
+@app.route("/debug/models")
+def debug_models():
+    import os
+    model_dir = os.path.join(BASE_DIR, "models")
+    files = []
+    if os.path.isdir(model_dir):
+        files = sorted(os.listdir(model_dir))
+    root_pkl = [f for f in os.listdir(BASE_DIR) if f.endswith(".pkl")]
+    return jsonify({
+        "models_dir": model_dir,
+        "models_files": files,
+        "root_pkl": root_pkl,
+        "exists_career_model": os.path.exists(os.path.join(model_dir, "career_model.pkl")),
+        "exists_vectorizer": os.path.exists(os.path.join(model_dir, "vectorizer.pkl")),
+        "exists_best": os.path.exists(os.path.join(model_dir, "best_model.pkl")),
+    })
 
 
 if __name__ == "__main__":
