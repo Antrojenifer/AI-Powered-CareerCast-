@@ -175,6 +175,21 @@
                             <div class="metric-name">F1 Score</div>
                         </div>
                     </div>
+                    <div style="padding:0.75rem 1.5rem 1.25rem; font-size:0.85rem; color:#64748b;">
+                        <strong>Active model:</strong> {{ model_used | default('logistic_regression') | replace('_',' ') | title }}
+                        &nbsp;·&nbsp; <strong>Features:</strong> {{ feature_type | default('tfidf') | upper }}
+                        {% if skill_alignment is defined %}
+                        &nbsp;·&nbsp; <strong>Skill alignment:</strong> {{ (skill_alignment * 100) | round(0) }}%
+                        {% endif %}
+                        {% if model_comparison %}
+                        <div style="margin-top:0.5rem;">
+                            <strong>Model comparison (F1):</strong>
+                            {% for name, m in model_comparison.items() %}
+                            <span style="margin-right:0.75rem;">{{ name | replace('_',' ') | title }}: {{ m.f1_score }}%</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
 
             </div>

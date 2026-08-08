@@ -1,0 +1,117 @@
+{
+  "dataset_size": 216,
+  "n_classes": 18,
+  "logistic_regression": {
+    "accuracy": 96.0,
+    "f1_weighted": 95.7,
+    "precision_at_3": 98.0,
+    "mrr": 0.96
+  },
+  "random_forest": {
+    "accuracy": 94.0,
+    "f1_weighted": 93.7,
+    "precision_at_3": 97.0,
+    "mrr": 0.94
+  },
+  "cross_validation": {
+    "n_splits": 3,
+    "logistic_regression_f1_mean": 99.5,
+    "logistic_regression_f1_std": 0.7,
+    "random_forest_f1_mean": 99.1,
+    "random_forest_f1_std": 0.7
+  },
+  "linkedin_transition_benchmark": {
+    "top3_hit_rate": 100.0,
+    "n_transitions": 8,
+    "details": [
+      {
+        "skills": "python sql excel power bi",
+        "target": "Data Analyst",
+        "top3": [
+          "Data Analyst",
+          "Software Engineer",
+          "iOS Developer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "python machine learning pandas scikit-learn",
+        "target": "Data Scientist",
+        "top3": [
+          "Data Scientist",
+          "Software Engineer",
+          "ML Engineer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "python deep learning tensorflow pytorch",
+        "target": "ML Engineer",
+        "top3": [
+          "ML Engineer",
+          "Software Engineer",
+          "iOS Developer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "html css javascript react",
+        "target": "Frontend Developer",
+        "top3": [
+          "Frontend Developer",
+          "Full Stack Developer",
+          "Software Engineer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "python flask django sql",
+        "target": "Backend Developer",
+        "top3": [
+          "Software Engineer",
+          "iOS Developer",
+          "Backend Developer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "docker kubernetes aws linux",
+        "target": "DevOps Engineer",
+        "top3": [
+          "Cloud Engineer",
+          "DevOps Engineer",
+          "iOS Developer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "python spark sql etl",
+        "target": "Data Engineer",
+        "top3": [
+          "Data Engineer",
+          "Software Engineer",
+          "iOS Developer"
+        ],
+        "hit": true
+      },
+      {
+        "skills": "python nlp transformers spacy",
+        "target": "NLP Engineer",
+        "top3": [
+          "NLP Engineer",
+          "Software Engineer",
+          "iOS Developer"
+        ],
+        "hit": true
+      }
+    ],
+    "note": "Curated LinkedIn-style skill\u2192career transition pairs"
+  },
+  "semeval_style_ranking": {
+    "protocol": "Precision@K and MRR on held-out test set (SemEval-style ranking evaluation)",
+    "precision_at_3_lr": 98.0,
+    "precision_at_3_rf": 97.0,
+    "mrr_lr": 0.96,
+    "mrr_rf": 0.94
+  }
+}

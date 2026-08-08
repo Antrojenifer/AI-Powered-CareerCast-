@@ -1,0 +1,4 @@
+{
+  "type": "tfidf",
+  "note": "Sentence-BERT not available; TF-IDF used"
+}

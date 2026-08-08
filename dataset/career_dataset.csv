@@ -1,71 +1,253 @@
 Skills,Degree,Experience,Career
-python machine learning pandas numpy scikit-learn,B.Tech Computer Science,3,Data Scientist
-python sql power bi excel data analysis,B.Sc Statistics,2,Data Analyst
-python deep learning tensorflow pytorch,M.Tech Artificial Intelligence,4,ML Engineer
-python gen ai llm langchain huggingface,B.Tech Computer Science,3,AI Engineer
-java spring boot sql microservices,B.Tech Computer Science,4,Backend Developer
-html css javascript react node.js,B.Tech Information Technology,2,Frontend Developer
-python django flask sql,B.Tech Computer Science,5,Full Stack Developer
-aws docker kubernetes devops ci/cd,B.Tech Computer Science,6,DevOps Engineer
-sql etl data engineering spark hadoop,B.Tech Computer Science,5,Data Engineer
-machine learning deep learning nlp transformers,M.Tech Computer Science,4,NLP Engineer
-cybersecurity linux networking,B.Tech Computer Science,4,Cybersecurity Analyst
-ui/ux figma,B.Des Design,3,UI/UX Designer
-project management agile scrum leadership,MBA,7,Project Manager
-digital marketing seo content writing,BBA,3,Digital Marketer
-c++ algorithms data structures,B.Tech Computer Science,2,Software Engineer
-python flask rest api,B.Tech Information Technology,3,Backend Developer
-javascript typescript react vue.js,B.Tech Computer Science,4,Frontend Developer
-aws azure cloud computing,B.Tech Computer Science,5,Cloud Engineer
-python scikit-learn pandas numpy,B.Tech Computer Science,2,Data Scientist
-java spring boot microservices,M.Tech Computer Science,6,Backend Developer
-html css bootstrap javascript,B.Tech Information Technology,1,Frontend Developer
-python tensorflow pytorch deep learning,M.Tech Artificial Intelligence,5,ML Engineer
-sql power bi excel tableau,B.Sc Mathematics,4,Data Analyst
-docker kubernetes devops,B.Tech Computer Science,4,DevOps Engineer
-react node.js mongodb,B.Tech Computer Science,3,Full Stack Developer
-nlp machine learning python transformers,M.Tech Computer Science,3,NLP Engineer
-cybersecurity ethical hacking,B.Tech Computer Science,5,Cybersecurity Analyst
-figma ui/ux design,B.Des Design,2,UI/UX Designer
-agile scrum project management,MBA,6,Project Manager
-spark hadoop big data etl,B.Tech Computer Science,5,Data Engineer
-seo google analytics digital marketing,BBA,2,Digital Marketer
-python java sql,B.Tech Computer Science,3,Software Engineer
-flask django rest api,B.Tech Information Technology,4,Backend Developer
-angular typescript javascript,B.Tech Computer Science,3,Frontend Developer
-azure gcp cloud,B.Tech Computer Science,4,Cloud Engineer
-scikit-learn tensorflow machine learning,B.Tech Computer Science,3,Data Scientist
-spring boot java microservices,M.Tech Computer Science,5,Backend Developer
-react javascript html css,B.Tech Information Technology,2,Frontend Developer
-pytorch deep learning computer vision,M.Tech Artificial Intelligence,4,ML Engineer
-tableau power bi sql excel,B.Sc Statistics,3,Data Analyst
-kubernetes docker ci/cd,B.Tech Computer Science,5,DevOps Engineer
-node.js express mongodb,B.Tech Computer Science,4,Full Stack Developer
-spacy nlp python bert,M.Tech Computer Science,4,NLP Engineer
-networking security linux,B.Tech Computer Science,3,Cybersecurity Analyst
-ui design figma,B.Des Design,4,UI/UX Designer
-leadership communication project management,MBA,8,Project Manager
-etl spark data pipelines,B.Tech Computer Science,6,Data Engineer
-content marketing seo,BBA,4,Digital Marketer
-c++ java python,B.Tech Computer Science,2,Software Engineer
-python gen ai llm langchain,B.Tech Computer Science,3,AI Engineer
-python deep learning gen ai transformers,M.Tech Artificial Intelligence,4,AI Engineer
-sql python power bi statistics,B.Sc Mathematics,3,Data Analyst
-python machine learning gen ai,B.Tech Computer Science,2,AI Engineer
-html css javascript react,B.Tech Information Technology,3,Frontend Developer
-java spring microservices sql,B.Tech Computer Science,5,Backend Developer
-aws docker kubernetes,B.Tech Computer Science,4,DevOps Engineer
-python pandas numpy scikit-learn,B.Tech Computer Science,3,Data Scientist
-python tensorflow keras deep learning,M.Tech Artificial Intelligence,5,ML Engineer
-power bi excel sql data analysis,BBA,2,Data Analyst
-react typescript node.js,B.Tech Computer Science,4,Full Stack Developer
-python nlp transformers huggingface,M.Tech Computer Science,3,NLP Engineer
-python machine learning power bi,B.Tech Computer Science,2,Data Analyst
-python gen ai deep learning pytorch,B.Tech Computer Science,4,AI Engineer
-sql python tableau,B.Sc Statistics,3,Data Analyst
-java android kotlin,B.Tech Computer Science,3,Android Developer
-swift ios,B.Tech Computer Science,4,iOS Developer
-python flask django,B.Tech Information Technology,3,Backend Developer
-javascript vue.js css,B.Tech Computer Science,2,Frontend Developer
-aws cloud architecture,B.Tech Computer Science,5,Cloud Engineer
-python machine learning scikit-learn,B.Tech Computer Science,3,Data Scientist
+marketing seo writing google analytics,BBA Marketing,1,Digital Marketer
+aws azure terraform,B.Tech Computer Science,3,Cloud Engineer
+html css javascript react node.js python sql,B.Tech IT,4,Full Stack Developer
+html css javascript react node.js python sql,B.Tech CSE,1,DevOps Engineer
+python ml pandas scipy sql feature engineering sql,B.Tech Computer Science,4,Data Scientist
+spark kafka python sql etl,B.Tech CSE,3,Data Engineer
+html css react node.js express sql,B.Tech IT,7,Full Stack Developer
+swift ios xcode swiftui uikit mobile,B.Tech CSE,1,iOS Developer
+python huggingface transformers nlp bert,M.Sc AI,7,NLP Engineer
+sql python spark etl airflow data engineering,B.Tech IT,4,Data Engineer
+cybersecurity linux networking python siem,B.Tech Cybersecurity,4,Cybersecurity Analyst
+figma ui xd prototyping wireframing,B.Des Design,1,UI/UX Designer
+cybersecurity linux networking python siem,B.Tech Information Security,1,Cybersecurity Analyst
+javascript react node.js postgresql sql,B.Tech Computer Science,3,Full Stack Developer
+html css javascript react typescript redux,B.Sc Computer Science,4,Frontend Developer
+python gen ai llm langchain huggingface transformers openai,M.Tech AI,4,AI Engineer
+power bi excel sql python data visualization,B.Tech IT,2,Data Analyst
+android kotlin java firebase,B.Tech CSE,3,Android Developer
+aws terraform kubernetes docker jenkins,B.Tech CSE,4,DevOps Engineer
+java android kotlin firebase android studio,B.Tech Computer Science,1,Android Developer
+xd figma ui ux prototyping,B.Des Design,6,UI/UX Designer
+kotlin android jetpack firebase mobile,B.Tech IT,5,Android Developer
+python nlp spacy transformers bert,M.Sc AI,1,UI/UX Designer
+html css javascript react redux sql,B.Sc Computer Science,5,Frontend Developer
+java python sql git algorithms data structures,B.Tech IT,5,Software Engineer
+python huggingface transformers llm gen ai git,B.Tech Computer Science,2,AI Engineer
+react node.js python sql javascript python,B.Tech IT,5,Full Stack Developer
+python scikit-learn pandas numpy matplotlib sql data science,B.Tech CSE,5,Data Scientist
+project management agile leadership communication,MBA,6,Project Manager
+python machine learning statistics pandas sql jupyter,B.Tech CSE,3,Data Scientist
+sql power bi excel tableau data analysis statistics python,B.Com,4,Data Analyst
+java spring boot sql rest api microservices,B.Tech CSE,2,Backend Developer
+sql spark hadoop etl airflow python,M.Tech Data Engineering,3,Data Engineer
+aws docker kubernetes ci/cd linux terraform jenkins,B.Tech CSE,1,DevOps Engineer
+python java flask django sql rest api postgresql javascript,B.Tech CSE,4,Backend Developer
+python huggingface transformers nlp bert,B.Tech CSE,2,NLP Engineer
+vue.js javascript html css,B.Tech CSE,6,Frontend Developer
+python machine learning statistics pandas sql jupyter,M.Sc Data Science,1,Data Scientist
+java spring boot sql mongodb rest api,B.Tech CSE,5,Backend Developer
+figma ui ux wireframing usability,B.Des Design,4,UI/UX Designer
+swift swiftui ios xcode python,B.Tech CSE,7,iOS Developer
+python bert huggingface spacy,M.Tech Computational Linguistics,7,NLP Engineer
+python ml pandas numpy scipy sql feature engineering python,B.Tech CSE,2,Data Scientist
+react nextjs typescript javascript css,B.Tech IT,2,Frontend Developer
+power bi excel sql python data visualization,B.Com,7,Data Analyst
+aws terraform docker kubernetes azure,B.Tech Computer Science,5,Cloud Engineer
+java spring boot sql rest api microservices,B.Tech IT,7,Backend Developer
+java android kotlin firebase android studio,B.Tech IT,3,Android Developer
+java spring boot mongodb rest api,B.Tech IT,3,Backend Developer
+agile scrum jira project management leadership,MBA,7,Project Manager
+digital marketing seo social media advertising,B.Com,5,Digital Marketer
+kubernetes docker aws terraform jenkins,B.Tech Computer Science,5,DevOps Engineer
+python langchain llm openai huggingface,M.Tech AI,5,Backend Developer
+python airflow sql etl spark,M.Tech Data Engineering,2,Data Engineer
+swift swiftui ios xcode uikit,B.Tech IT,5,iOS Developer
+cybersecurity linux networking python siem sql,B.Tech CSE,6,Cybersecurity Analyst
+vue.js javascript html css typescript sql,B.Sc Computer Science,1,Frontend Developer
+html css javascript react typescript redux,B.Tech CSE,1,Frontend Developer
+python tensorflow pytorch scikit-learn mlops,M.Tech AI,4,ML Engineer
+python java algorithms git linux,B.Tech IT,3,Software Engineer
+react javascript typescript html css tailwind javascript,B.Tech IT,5,Frontend Developer
+java python sql git algorithms data structures,B.Tech Computer Science,7,Software Engineer
+python pandas numpy scipy sql feature engineering linux,M.Sc Data Science,7,Data Scientist
+python huggingface transformers nlp,M.Tech Computational Linguistics,4,NLP Engineer
+python pandas numpy scikit-learn sql machine learning,B.Tech Computer Science,3,Data Scientist
+sql python excel power bi data analysis git,B.Com,5,Data Analyst
+react node.js express mongodb javascript sql,B.Tech CSE,7,Full Stack Developer
+python airflow etl spark,B.Tech IT,7,Data Engineer
+java android kotlin firebase android studio,B.Tech CSE,6,Android Developer
+python c++ java algorithms git linux,B.Tech Computer Science,6,Software Engineer
+sql power bi excel tableau data analysis statistics python,B.Sc Statistics,1,Data Analyst
+machine learning pytorch docker scikit-learn,M.Tech AI,6,ML Engineer
+python huggingface transformers llm gen ai,B.Tech CSE,4,AI Engineer
+project management agile scrum leadership communication,PGDM,6,Project Manager
+python deep learning pytorch tensorflow docker javascript,B.Tech CSE,5,ML Engineer
+figma sketch ui ux wireframing prototyping,BFA,5,UI/UX Designer
+python airflow sql etl spark,B.Tech CSE,4,Data Engineer
+figma sketch ui ux wireframing prototyping git,B.Des Design,7,UI/UX Designer
+python deep learning tensorflow pytorch machine learning docker,M.Tech AI,1,ML Engineer
+python django flask postgresql rest api,B.Tech CSE,1,Backend Developer
+digital marketing media seo analytics,BA,3,Cloud Engineer
+penetration testing networking linux,B.Tech Cybersecurity,2,Cybersecurity Analyst
+excel power bi sql data analysis reporting python,B.Com,2,Data Analyst
+python tensorflow pytorch scikit-learn mlops linux,B.Tech CSE,7,ML Engineer
+python django flask postgresql rest api,B.Tech Computer Science,3,Full Stack Developer
+react node.js express mongodb javascript sql,B.Tech Computer Science,5,Full Stack Developer
+content writing seo digital marketing,BA,2,Data Engineer
+python tensorflow pytorch scikit-learn mlops,M.Tech Computer Science,2,ML Engineer
+kubernetes docker aws terraform jenkins sql,B.Tech IT,2,DevOps Engineer
+python nlp spacy transformers bert linux,B.Tech CSE,3,NLP Engineer
+java android firebase mobile python,B.Tech CSE,1,Android Developer
+python langchain llm openai huggingface,B.Tech CSE,3,AI Engineer
+java python sql algorithms,B.Tech CSE,7,Software Engineer
+aws docker kubernetes ci/cd linux terraform jenkins,B.Tech IT,4,DevOps Engineer
+scrum agile jira project management communication,MBA,4,AI Engineer
+javascript react node.js postgresql sql git,B.Tech CSE,6,Full Stack Developer
+react node.js express mongodb javascript sql,B.Tech IT,2,Full Stack Developer
+agile scrum jira project management leadership linux,B.Tech CSE,2,Cybersecurity Analyst
+kotlin android jetpack firebase mobile sql,B.Tech Computer Science,2,Android Developer
+aws terraform kubernetes docker jenkins,B.Tech IT,7,DevOps Engineer
+javascript react node.js postgresql sql,B.Tech IT,1,Full Stack Developer
+ios swift xcode swiftui mobile,B.Tech CSE,6,Android Developer
+figma ui ux adobe xd prototyping wireframing,B.Sc Design,4,UI/UX Designer
+python c++ java algorithms git linux,B.Tech CSE,1,Software Engineer
+project management agile leadership communication,PGDM,3,Project Manager
+python deep learning pytorch tensorflow docker,M.Tech AI,3,ML Engineer
+adobe xd figma ui ux prototyping,B.Sc Design,1,UI/UX Designer
+aws azure cloud computing docker kubernetes,B.Tech CSE,4,Cloud Engineer
+aws azure gcp terraform cloud computing docker,B.Tech Computer Science,6,Cloud Engineer
+python nlp transformers spacy bert huggingface,M.Tech Computational Linguistics,1,NLP Engineer
+docker kubernetes linux ansible jenkins aws,B.Tech IT,1,DevOps Engineer
+java python sql git oop algorithms,B.Tech Computer Science,4,Software Engineer
+swiftui swift ios xcode mobile,B.Tech Computer Science,5,iOS Developer
+python gen ai llm langchain transformers,M.Tech AI,1,AI Engineer
+python nlp spacy bert,M.Tech Computational Linguistics,6,NLP Engineer
+python machine learning pandas numpy scikit-learn statistics sql,B.Tech CSE,6,Data Scientist
+power bi excel sql python data visualization,B.Sc Statistics,4,Data Analyst
+java python sql git algorithms data structures,B.Tech CSE,2,Software Engineer
+linux docker kubernetes jenkins terraform,B.Tech IT,5,DevOps Engineer
+ui ux figma adobe xd prototyping,B.Sc Design,5,UI/UX Designer
+python spark kafka airflow sql etl,B.Tech IT,2,Data Engineer
+spark python sql etl,B.Tech IT,5,Frontend Developer
+ethical hacking cybersecurity networking python linux,B.Tech Cybersecurity,7,UI/UX Designer
+terraform kubernetes docker jenkins sql,B.Tech Computer Science,2,DevOps Engineer
+linux networking cybersecurity python,B.Tech Cybersecurity,1,Cybersecurity Analyst
+aws azure gcp terraform cloud computing docker,B.Tech CSE,1,Cloud Engineer
+kubernetes docker aws terraform jenkins,B.Tech CSE,7,DevOps Engineer
+aws azure cloud computing docker kubernetes,B.Tech IT,7,Cloud Engineer
+project management agile scrum leadership communication,MBA,1,Project Manager
+node.js express typescript postgresql rest api,B.Tech Computer Science,2,Backend Developer
+sql excel tableau power bi data analysis statistics,B.Sc Statistics,6,Data Analyst
+adobe xd figma ui ux prototyping,BFA,3,UI/UX Designer
+terraform aws azure gcp kubernetes,B.Tech IT,5,Cloud Engineer
+aws azure gcp terraform cloud computing docker,B.Tech IT,4,Cloud Engineer
+sql python spark etl airflow data engineering,M.Tech Data Engineering,6,Data Engineer
+aws terraform docker kubernetes azure,B.Tech CSE,7,Cloud Engineer
+java kotlin android jetpack firebase mobile,B.Tech Computer Science,4,Android Developer
+python tensorflow keras machine learning,B.Tech CSE,2,ML Engineer
+html css javascript react redux,B.Tech CSE,3,Frontend Developer
+python nlp transformers spacy bert huggingface,B.Tech CSE,6,ML Engineer
+python pytorch tensorflow keras machine learning mlops javascript,M.Tech Computer Science,5,Cloud Engineer
+ethical hacking cybersecurity networking python,B.Tech CSE,2,Cybersecurity Analyst
+python gen ai llm langchain transformers,B.Tech CSE,6,AI Engineer
+python langchain openai huggingface llm rag python,M.Tech AI,2,AI Engineer
+swift ios uikit xcode,B.Tech Computer Science,7,iOS Developer
+python langchain openai huggingface llm rag,B.Tech CSE,7,AI Engineer
+digital marketing seo content writing google analytics,BA,6,Digital Marketer
+node.js express typescript postgresql rest api,B.Tech IT,4,Backend Developer
+ethical cybersecurity python git,B.Tech Information Security,4,Cybersecurity Analyst
+python langchain openai huggingface llm rag,B.Tech Computer Science,5,AI Engineer
+excel power bi sql data analysis reporting python,B.Sc Statistics,7,Data Scientist
+sql spark hadoop etl airflow sql,B.Tech CSE,6,Data Engineer
+swift ios uikit xcode,B.Tech CSE,4,iOS Developer
+kotlin android jetpack mobile development,B.Tech Computer Science,7,Android Developer
+figma ui ux wireframing usability,BFA,2,Project Manager
+react javascript typescript html css tailwind,B.Tech CSE,7,Frontend Developer
+java python sql git oop algorithms,B.Tech IT,2,Software Engineer
+docker kubernetes jenkins,B.Tech CSE,3,DevOps Engineer
+seo digital marketing content marketing analytics,BA,5,Digital Marketer
+python machine learning statistics pandas sql jupyter,B.Tech Computer Science,6,Data Scientist
+sql excel tableau power bi data analysis statistics,B.Tech IT,3,Data Analyst
+python gen ai llm langchain huggingface transformers openai,B.Tech Computer Science,6,AI Engineer
+agile scrum jira project management leadership,PGDM,5,Project Manager
+sql spark hadoop etl airflow,B.Tech IT,1,Data Engineer
+sql excel tableau power bi data analysis statistics,B.Com,1,Data Analyst
+cybersecurity penetration testing networking linux,B.Tech Information Security,7,Cybersecurity Analyst
+python java git sql data structures,B.Tech CSE,5,Software Engineer
+transformers nlp bert,M.Sc AI,5,NLP Engineer
+digital marketing social media seo analytics sql,BBA Marketing,6,Digital Marketer
+java kotlin android jetpack firebase mobile,B.Tech IT,6,Android Developer
+react nextjs typescript javascript css,B.Tech CSE,4,Frontend Developer
+python machine learning pytorch docker scikit-learn linux,M.Tech Computer Science,3,ML Engineer
+project management agile scrum leadership communication,B.Tech CSE,4,Project Manager
+python deep learning tensorflow pytorch machine learning docker,M.Tech Computer Science,6,ML Engineer
+project management agile kanban leadership,MBA,3,Project Manager
+python java git sql data structures,B.Tech Computer Science,3,Software Engineer
+figma sketch ux,B.Sc Design,2,UI/UX Designer
+gcp kubernetes terraform,B.Tech CSE,6,Cloud Engineer
+python spark kafka airflow sql etl,M.Tech Data Engineering,5,Data Engineer
+swiftui swift ios xcode mobile,B.Tech CSE,3,iOS Developer
+ui ux figma adobe xd prototyping,B.Des Design,3,UI/UX Designer
+docker kubernetes linux ansible jenkins aws linux,B.Tech Computer Science,3,DevOps Engineer
+cybersecurity linux python networking,B.Tech Information Security,3,AI Engineer
+terraform aws azure gcp kubernetes sql,B.Tech CSE,3,Cloud Engineer
+ios swift xcode swiftui mobile,B.Tech Computer Science,1,iOS Developer
+android kotlin java firebase,B.Tech Computer Science,5,Android Developer
+python java flask sql rest api postgresql,B.Tech Computer Science,6,Backend Developer
+python machine learning pytorch docker scikit-learn,B.Tech CSE,1,ML Engineer
+python machine learning pandas numpy scikit-learn statistics sql,M.Sc Data Science,4,Data Scientist
+ios swift xcode swiftui mobile sql,B.Tech IT,3,iOS Developer
+react html css tailwind,B.Sc Computer Science,2,Frontend Developer
+swift ios xcode swiftui uikit mobile,B.Tech IT,6,iOS Developer
+kotlin android jetpack mobile development,B.Tech CSE,4,Android Developer
+react node.js python sql javascript,B.Tech CSE,3,Full Stack Developer
+figma ui ux adobe xd prototyping wireframing,BFA,6,UI/UX Designer
+python spark kafka airflow sql etl,B.Tech CSE,7,Data Engineer
+cybersecurity linux python networking,B.Tech Cybersecurity,5,Cybersecurity Analyst
+swift ios xcode swiftui uikit mobile,B.Tech Computer Science,4,iOS Developer
+python scikit-learn pandas numpy matplotlib sql data science javascript,M.Sc Data Science,2,Data Scientist
+kotlin android jetpack mobile development,B.Tech IT,2,Android Developer
+nextjs javascript,B.Sc Computer Science,7,Frontend Developer
+swift swiftui ios xcode uikit,B.Tech Computer Science,2,iOS Developer
+writing seo digital,B.Com,7,Digital Marketer
+html css react node.js express sql,B.Tech CSE,4,Full Stack Developer
+python transformers bert huggingface nlp,B.Tech CSE,5,NLP Engineer
+python pandas numpy scikit-learn sql machine learning python,M.Sc Data Science,5,Data Scientist
+python deep learning tensorflow pytorch machine learning docker,B.Tech CSE,4,ML Engineer
+python java c++ sql git algorithms data structures,B.Tech CSE,4,Software Engineer
+python java c++ sql git algorithms data structures,B.Tech IT,6,Software Engineer
+gcp aws terraform python,B.Tech IT,1,Cloud Engineer
+python pytorch tensorflow keras machine learning mlops,M.Tech AI,7,ML Engineer
+digital marketing seo content writing analytics,B.Com,4,Digital Marketer
+digital marketing social media seo analytics,B.Com,1,Cybersecurity Analyst
+sql python spark etl airflow data engineering,B.Tech CSE,1,Data Engineer
+scrum agile project management communication,B.Tech CSE,7,Project Manager
+seo digital marketing content marketing analytics,B.Com,2,Digital Marketer
+linux networking cybersecurity python,B.Tech Information Security,6,Cybersecurity Analyst
+python java flask sql api postgresql,B.Tech IT,1,Backend Developer
+node.js express typescript postgresql rest api,B.Tech CSE,7,Backend Developer
+digital marketing seo social media advertising,BBA Marketing,3,Digital Marketer
+python gen ai llm langchain transformers,B.Tech Computer Science,3,AI Engineer
+digital marketing analytics linux,BBA Marketing,7,Digital Marketer
+sql power bi excel tableau data analysis statistics python,B.Tech IT,6,Data Analyst
+python scikit-learn pandas numpy matplotlib sql data science javascript,B.Tech Computer Science,7,Data Scientist
+python huggingface transformers llm gen ai,M.Tech AI,7,AI Engineer
+html css javascript react typescript redux linux,B.Tech IT,6,Frontend Developer
+python machine learning pandas numpy scikit-learn statistics sql,B.Tech Computer Science,1,Data Scientist
+project agile leadership,B.Tech CSE,5,Project Manager
+python spacy transformers nlp,M.Tech Computational Linguistics,3,NLP Engineer
+python transformers bert huggingface nlp spacy,M.Sc AI,2,NLP Engineer
+scrum agile jira project management communication,PGDM,2,Project Manager
+python django flask postgresql rest api,B.Tech IT,6,Cloud Engineer
+kotlin android jetpack firebase mobile,B.Tech CSE,7,Android Developer
+figma ui ux wireframing usability,B.Sc Design,7,Project Manager
+python nlp transformers spacy bert huggingface,M.Sc AI,4,NLP Engineer
+aws azure cloud computing docker kubernetes,B.Tech Computer Science,2,Cloud Engineer
+python gen ai llm langchain huggingface transformers openai,B.Tech CSE,1,AI Engineer
+docker kubernetes linux ansible jenkins aws,B.Tech CSE,6,DevOps Engineer
+html css javascript react node.js python sql,B.Tech Computer Science,6,ML Engineer
+vue.js javascript html css typescript,B.Tech IT,3,Frontend Developer
+sql python excel power bi data analysis,B.Sc Statistics,3,Data Analyst
+linux networking cybersecurity python git,B.Tech CSE,3,Cybersecurity Analyst
+content writing seo digital marketing,BBA Marketing,4,Digital Marketer
+html react node.js express sql,B.Tech Computer Science,2,Full Stack Developer
+aws docker kubernetes ci/cd linux terraform jenkins,B.Tech Computer Science,6,DevOps Engineer
+cybersecurity penetration testing networking linux javascript,B.Tech CSE,5,Cybersecurity Analyst
+aws docker kubernetes azure javascript,B.Tech IT,2,Cloud Engineer
+java spring boot sql rest api microservices,B.Tech Computer Science,5,Backend Developer
+swift ios uikit xcode,B.Tech IT,2,iOS Developer
+excel power bi sql data analysis reporting python,B.Tech IT,5,Data Analyst
+python java c++ sql git algorithms data structures python,B.Tech Computer Science,1,Software Engineer
+project management agile leadership communication,B.Tech CSE,1,Project Manager
