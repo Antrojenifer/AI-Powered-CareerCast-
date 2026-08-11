@@ -74,34 +74,33 @@
                         <form method="POST" action="{{ url_for('analyze') }}" enctype="multipart/form-data" id="mainForm">
                             <input type="hidden" name="input_mode" id="inputMode" value="skills">
 
-                            <!-- Profile row -->
-                            <div class="row g-3 mb-4">
-                                <div class="col-sm-6">
-                                    <label class="form-label">Your name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label">Email <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
-                                    <input type="email" name="email" class="form-control" placeholder="Your Email">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label">Years of experience</label>
-                                    <input type="number" name="experience" class="form-control" min="0" max="40" placeholder="0" value="0">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label">Education <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
-                                    <input type="text" name="degree" class="form-control" placeholder="Your Education">
-                                </div>
-                            </div>
-
-                            <!-- Panes -->
+                            <!-- Paste Skills mode: name, email, experience, education, skills -->
                             <div id="skillsPane">
+                                <div class="row g-3 mb-4">
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Your name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Email <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+                                        <input type="email" name="email" class="form-control" placeholder="Your Email">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Years of experience</label>
+                                        <input type="number" name="experience" class="form-control" min="0" max="40" placeholder="0" value="0">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Education <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+                                        <input type="text" name="degree" class="form-control" placeholder="Your Education">
+                                    </div>
+                                </div>
                                 <label class="form-label">Your skills</label>
                                 <textarea name="skills" class="form-control skills-textarea" rows="4"
                                     placeholder="Python, SQL, Power BI, Machine Learning, HTML, CSS…"></textarea>
                                 <p class="form-hint">Separate skills with commas. Free-form text also works.</p>
                             </div>
 
+                            <!-- Upload Resume mode: only file upload -->
                             <div id="resumePane" style="display:none;">
                                 <label class="form-label">Upload resume</label>
                                 <div class="upload-zone" id="uploadZone">
@@ -118,7 +117,7 @@
                                     </button>
                                     <div id="fileName"></div>
                                 </div>
-                                <p class="form-hint mt-2">Skills, education and experience are extracted automatically.</p>
+                                <p class="form-hint mt-2">Name, skills, education and experience are extracted automatically from your resume.</p>
                             </div>
 
                             <div style="margin-top: 1.5rem;">
