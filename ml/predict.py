@@ -236,10 +236,10 @@ def predict_career(
             "matched_skills": gap["matched"],
         })
 
-    # ALWAYS rank by model confidence descending so order matches displayed %
+    # Rank by skill overlap first (UI: "how well your skills match"), then confidence
     top_careers = sorted(
         top_careers,
-        key=lambda x: (x["confidence"], x["skill_match"]),
+        key=lambda x: (x["skill_match"], x["confidence"]),
         reverse=True,
     )[:top_k]
     top = top_careers[0]

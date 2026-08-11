@@ -34,7 +34,7 @@
                 </div>
                 <div class="score-chip">
                     {% set top = top_careers[0] %}
-                    <div class="score-number">{{ top.confidence }}%</div>
+                    <div class="score-number">{{ top.skill_match }}%</div>
                     <div class="score-label">Skill Match</div>
                 </div>
             </div>
@@ -97,12 +97,12 @@
                                 </div>
                                 <div class="text-end" style="flex-shrink:0;">
                                     <div class="career-prob">#{{ loop.index }} match</div>
-                                    <div class="career-match-pct">{{ item.confidence }}% match · {{ item.skill_match }}% skill overlap</div>
+                                    <div class="career-match-pct">{{ item.skill_match }}% skill match · {{ item.confidence }}% model confidence</div>
                                 </div>
                             </div>
                             <div class="career-bar">
                                 <div class="career-bar-fill {{ bar_classes[loop.index0] }}"
-                                     style="width: {{ item.confidence if item.confidence > 0 else 5 }}%;"></div>
+                                     style="width: {{ item.skill_match if item.skill_match > 0 else 5 }}%;"></div>
                             </div>
                             {% if item.missing_skills %}
                             <div class="gap-chips">
