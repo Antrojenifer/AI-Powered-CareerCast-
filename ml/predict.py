@@ -221,21 +221,27 @@ def predict_career(
         user_skill_list = [s.strip() for s in (skills or "").split() if s.strip()]
 
     top_careers = []
-    for career, prob in career_probs[: max(top_k, 1)]:
+    # Take more candidates then sort strictly by model confidence (highest % first)
+    for career, prob in career_probs[: max(top_k * 2, 5)]:
         gap = get_skill_gaps(user_skill_list, str(career))
-        combined = round(0.7 * (float(prob) * 100) + 0.3 * gap["match_percent"], 1)
+        conf = round(float(prob) * 100, 1)
         top_careers.append({
             "career": str(career),
-            "probability": round(float(prob) * 100, 1),
-            "confidence": round(float(prob) * 100, 1),
+            "probability": conf,
+            "confidence": conf,
             "skill_match": gap["match_percent"],
             "alignment_score": gap["alignment_score"],
-            "combined_score": combined,
+            "combined_score": conf,  # keep field; ranking uses confidence
             "missing_skills": gap["missing"][:6],
             "matched_skills": gap["matched"],
         })
 
-    top_careers = sorted(top_careers, key=lambda x: x["combined_score"], reverse=True)[:top_k]
+    # ALWAYS rank by model confidence descending so order matches displayed %
+    top_careers = sorted(
+        top_careers,
+        key=lambda x: (x["confidence"], x["skill_match"]),
+        reverse=True,
+    )[:top_k]
     top = top_careers[0]
 
     return {
