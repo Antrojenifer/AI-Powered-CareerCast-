@@ -254,3 +254,8 @@ def predict_career(
         "skill_alignment": top["alignment_score"],
         "top_k": top_k,
     }
+
+
+def get_metrics() -> dict:
+    """Alias used by Streamlit and API layers."""
+    return load_metrics()
