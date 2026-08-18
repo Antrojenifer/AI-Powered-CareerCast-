@@ -83,7 +83,7 @@
                             </span>
                             Recommended Career Domains
                         </h5>
-                        <p>Ranked by how well your skills match each path</p>
+                        <p>Ranked by how well your skills match each path · Click a career for its plan</p>
                     </div>
                     <div class="section-card-body">
                         {% set bar_classes = ['bar-1','bar-2','bar-3','bar-4','bar-5'] %}
@@ -130,8 +130,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Right column -->
+                        <!-- Right column -->
             <div class="col-lg-5 d-flex flex-column gap-4">
 
                 <!-- Selected Career Recommendation (updates on click) -->
@@ -162,6 +161,7 @@
                         {% endif %}
                         </div>
                     </div>
+
                     <div class="roadmap-box" id="roadmap-box">
                         <div class="roadmap-title">
                             <i class="bi bi-map"></i> Personalized Learning Roadmap
@@ -234,9 +234,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Animate progress bars
             document.querySelectorAll('.career-bar-fill').forEach(bar => {
                 const target = bar.style.width;
                 bar.style.width = '0%';
@@ -271,14 +270,14 @@
                 "rest api": "Design a sample REST API with clear request/response examples.",
                 "gen ai": "Practice prompt engineering and LLM API usage.",
                 "llm": "Learn how LLMs work at a high level and try API calls.",
-                "langchain": "Build a simple RAG or agent demo with LangChain.",
                 "statistics": "Revise probability, distributions, and hypothesis testing.",
                 "data analysis": "Complete an end-to-end analysis project and document findings.",
                 "c++": "Practice OOP and DSA basics in C++ with small programs.",
                 "java": "Build a small Java application covering OOP and collections.",
                 "git": "Practice branching, commits, pull requests, and merges.",
                 "typescript": "Convert a small JS project to TypeScript.",
-                "vue.js": "Build a small Vue component-based UI.",
+                "linux": "Practice common Linux shell commands and file permissions.",
+                "terraform": "Write basic Terraform configs and apply them on a test cloud account.",
                 "mongodb": "Practice CRUD operations and basic aggregations in MongoDB.",
                 "spring boot": "Build a simple Spring Boot REST service."
             };
@@ -286,28 +285,26 @@
             function parseList(raw) {
                 try { return JSON.parse(raw || '[]'); } catch (e) { return []; }
             }
-
             function actionFor(skill) {
                 const key = (skill || '').toLowerCase().trim();
-                return SKILL_ACTIONS[key] || `Learn the fundamentals of ${skill} and complete a small hands-on project.`;
+                return SKILL_ACTIONS[key] || ('Learn the fundamentals of ' + skill + ' and complete a small hands-on project.');
             }
-
             function buildRoadmap(career, missing, matched, matchPct) {
                 const items = (missing || []).map(s => ({ skill: s, action: actionFor(s) }));
                 let p1 = items.slice(0, 2);
                 let p2 = items.slice(2, 5);
                 let p3 = items.slice(5, 8);
                 if (!p1.length) {
-                    p1 = [{ skill: "Strengthen foundations", action: `Revise core skills for ${career}: ${(matched || []).slice(0,4).join(', ') || 'your current stack'}.` }];
+                    p1 = [{ skill: "Strengthen foundations", action: "Revise core skills for " + career + ": " + ((matched || []).slice(0,4).join(', ') || 'your current stack') + "." }];
                 }
                 if (!p2.length) {
-                    p2 = [{ skill: "Hands-on practice", action: `Build 1–2 mini projects related to ${career} using your current skills.` }];
+                    p2 = [{ skill: "Hands-on practice", action: "Build 1–2 mini projects related to " + career + " using your current skills." }];
                 }
                 if (!p3.length) {
-                    p3 = [{ skill: "Portfolio & applications", action: `Publish projects on GitHub and align your resume toward ${career} roles.` }];
+                    p3 = [{ skill: "Portfolio & applications", action: "Publish projects on GitHub and align your resume toward " + career + " roles." }];
                 }
                 return {
-                    summary: `Personalized roadmap for ${career} (${matchPct}% skill match, ${(missing||[]).length} skills to improve).`,
+                    summary: "Personalized roadmap for " + career + " (" + matchPct + "% skill match, " + (missing||[]).length + " skills to improve).",
                     phases: [
                         { phase: 1, title: "Foundation", duration: "2–4 weeks", focus: "Close critical skill gaps", items: p1 },
                         { phase: 2, title: "Intermediate", duration: "4–6 weeks", focus: "Build applied competence", items: p2 },
@@ -315,26 +312,23 @@
                     ]
                 };
             }
-
             function renderRoadmap(career, missing, matched, matchPct) {
                 const roadmap = buildRoadmap(career, missing, matched, matchPct);
                 document.getElementById('roadmap-summary').textContent = roadmap.summary;
                 const root = document.getElementById('roadmap-phases');
-                root.innerHTML = roadmap.phases.map(ph => `
-                    <div class="roadmap-phase">
-                        <div class="phase-head">
-                            <span class="phase-badge">Phase ${ph.phase}</span>
-                            <span class="phase-title">${ph.title}</span>
-                            <span class="phase-duration">${ph.duration}</span>
-                        </div>
-                        <div class="phase-focus">${ph.focus}</div>
-                        <ul class="phase-items">
-                            ${ph.items.map(it => `<li><strong>${it.skill}</strong> — ${it.action}</li>`).join('')}
-                        </ul>
-                    </div>
-                `).join('');
+                root.innerHTML = roadmap.phases.map(ph =>
+                    '<div class="roadmap-phase">' +
+                    '<div class="phase-head">' +
+                    '<span class="phase-badge">Phase ' + ph.phase + '</span>' +
+                    '<span class="phase-title">' + ph.title + '</span>' +
+                    '<span class="phase-duration">' + ph.duration + '</span>' +
+                    '</div>' +
+                    '<div class="phase-focus">' + ph.focus + '</div>' +
+                    '<ul class="phase-items">' +
+                    ph.items.map(it => '<li><strong>' + it.skill + '</strong> — ' + it.action + '</li>').join('') +
+                    '</ul></div>'
+                ).join('');
             }
-
             function renderChips(container, skills, type) {
                 if (!skills || skills.length === 0) {
                     container.innerHTML = type === 'missing'
@@ -343,54 +337,40 @@
                     return;
                 }
                 container.innerHTML = skills.map(s => {
-                    if (type === 'missing') {
-                        return `<span class="learn-chip"><i class="bi bi-plus"></i>${s}</span>`;
-                    }
-                    return `<span class="have-chip"><i class="bi bi-check2"></i>${s}</span>`;
+                    if (type === 'missing') return '<span class="learn-chip"><i class="bi bi-plus"></i>' + s + '</span>';
+                    return '<span class="have-chip"><i class="bi bi-check2"></i>' + s + '</span>';
                 }).join('');
             }
-
             function selectCareer(el) {
                 document.querySelectorAll('.career-selectable').forEach(x => x.classList.remove('active'));
                 el.classList.add('active');
-
                 const career = el.dataset.career || '';
                 const rank = el.dataset.rank || '1';
                 const match = el.dataset.match || '0';
                 const confidence = el.dataset.confidence || '0';
                 const missing = parseList(el.dataset.missing);
                 const matched = parseList(el.dataset.matched);
-
-                document.getElementById('rec-label').innerHTML =
-                    `<i class="bi bi-stars me-1"></i>#${rank} match · Selected path`;
+                document.getElementById('rec-label').innerHTML = '<i class="bi bi-stars me-1"></i>#' + rank + ' match · Selected path';
                 document.getElementById('rec-career').textContent = career;
-                document.getElementById('rec-sub').textContent =
-                    `Personalized skill plan for ${career}. Focus on the missing skills and roadmap below.`;
-                document.getElementById('rec-match-pill').textContent = `${match}% skill match`;
-                document.getElementById('rec-conf-pill').textContent = `${confidence}% confidence`;
-
+                document.getElementById('rec-sub').textContent = 'Personalized skill plan for ' + career + '. Focus on the missing skills and roadmap below.';
+                document.getElementById('rec-match-pill').textContent = match + '% skill match';
+                document.getElementById('rec-conf-pill').textContent = confidence + '% confidence';
                 const matchedSection = document.getElementById('rec-matched-section');
-                const matchedChips = document.getElementById('rec-matched-chips');
                 if (matched.length) {
                     matchedSection.style.display = 'block';
-                    renderChips(matchedChips, matched, 'matched');
+                    renderChips(document.getElementById('rec-matched-chips'), matched, 'matched');
                 } else {
                     matchedSection.style.display = 'none';
                 }
                 renderChips(document.getElementById('rec-missing-chips'), missing, 'missing');
                 renderRoadmap(career, missing, matched, match);
             }
-
             document.querySelectorAll('.career-selectable').forEach(el => {
                 el.addEventListener('click', () => selectCareer(el));
                 el.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        selectCareer(el);
-                    }
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCareer(el); }
                 });
             });
-            // Load roadmap for default selected career (#1)
             const first = document.querySelector('.career-selectable.active') || document.querySelector('.career-selectable');
             if (first) selectCareer(first);
         });
