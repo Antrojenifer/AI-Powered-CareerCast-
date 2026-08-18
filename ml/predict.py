@@ -257,5 +257,4 @@ def predict_career(
 
 
 def get_metrics() -> dict:
-    """Alias used by Streamlit and API layers."""
     return load_metrics()
