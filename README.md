@@ -1,23 +1,13 @@
-# CareerCast – Milestone 3
-Skill Gap Analysis · FastAPI · CI · Streamlit Review UI
+---
+title: AI-Powered Career Intelligence Platform
+emoji: 🎯
+colorFrom: blue
+colorTo: indigo
+sdk: streamlit
+sdk_version: 1.37.1
+app_file: app.py
+pinned: false
+---
 
-## Features
-- FastAPI: `/predict`, `/recommend`, `/gap-report`, `/health`
-- Skill gap module with prioritized learning actions
-- MLflow registry helper
-- GitHub Actions CI + accuracy gate (>= 90%)
-- Streamlit review UI with charts and export
-
-## Run
-```bash
-pip install -r requirements.txt
-uvicorn api.main:app --reload --port 8000
-streamlit run streamlit_app/app.py
-python scripts/accuracy_gate.py
-pytest -q
-```
-
-## Model metrics
-- Logistic Regression 96%
-- Random Forest 94%
-- XGBoost 91%
+# AI-Powered Career Intelligence Platform
+Milestone 1 + 2 + 3 demo on Hugging Face Spaces.

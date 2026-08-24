@@ -133,3 +133,83 @@ def build_gap_report(user_skills: List[str], top_careers: List[Dict[str, Any]]) 
         "career_gaps": reports,
         "user_skills": _normalize_skill_list(user_skills),
     }
+
+
+def build_learning_roadmap(
+    user_skills: List[str],
+    target_career: str,
+) -> Dict[str, Any]:
+    """
+    Build a simple 3-phase personalized learning roadmap
+    based on missing skills for the selected career.
+    """
+    gap = analyze_skill_gap(user_skills, target_career)
+    missing = gap.get("missing_skills") or []
+    matched = gap.get("matched_skills") or []
+    match_pct = gap.get("match_percent", 0)
+
+    # Split missing skills across phases
+    phase1, phase2, phase3 = [], [], []
+    for i, skill in enumerate(missing):
+        action = SKILL_ACTIONS.get(_norm(skill), f"Learn the fundamentals of {skill} and complete a small project.")
+        item = {"skill": skill, "action": action}
+        if i < 2:
+            phase1.append(item)
+        elif i < 5:
+            phase2.append(item)
+        else:
+            phase3.append(item)
+
+    # Always provide useful phase content even if few gaps
+    if not phase1 and matched:
+        phase1 = [{
+            "skill": "Strengthen foundations",
+            "action": f"Revise core skills you already have for {target_career}: {', '.join(matched[:4])}.",
+        }]
+    if not phase2:
+        phase2 = [{
+            "skill": "Hands-on practice",
+            "action": f"Build 1–2 mini projects related to {target_career} using your current skills.",
+        }]
+    if not phase3:
+        phase3 = [{
+            "skill": "Portfolio & applications",
+            "action": f"Publish projects on GitHub and align your resume toward {target_career} roles.",
+        }]
+
+    phases = [
+        {
+            "phase": 1,
+            "title": "Foundation",
+            "duration": "2–4 weeks",
+            "focus": "Close critical skill gaps",
+            "items": phase1,
+        },
+        {
+            "phase": 2,
+            "title": "Intermediate",
+            "duration": "4–6 weeks",
+            "focus": "Build applied competence",
+            "items": phase2,
+        },
+        {
+            "phase": 3,
+            "title": "Advanced / Portfolio",
+            "duration": "4–8 weeks",
+            "focus": "Prove readiness for roles",
+            "items": phase3,
+        },
+    ]
+
+    return {
+        "target_career": target_career,
+        "match_percent": match_pct,
+        "matched_skills": matched,
+        "missing_skills": missing,
+        "phases": phases,
+        "summary": (
+            f"Personalized roadmap for {target_career} "
+            f"({match_pct}% current skill match, {len(missing)} skills to improve)."
+        ),
+    }
+
