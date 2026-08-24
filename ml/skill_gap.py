@@ -144,9 +144,9 @@ def build_learning_roadmap(
     based on missing skills for the selected career.
     """
     gap = analyze_skill_gap(user_skills, target_career)
-    missing = gap.get("missing_skills") or []
-    matched = gap.get("matched_skills") or []
-    match_pct = gap.get("match_percent", 0)
+    missing = gap.get("missing_skills") or gap.get("missing") or []
+    matched = gap.get("matched_skills") or gap.get("matched") or []
+    match_pct = gap.get("match_percent", gap.get("match_pct", 0))
 
     # Split missing skills across phases
     phase1, phase2, phase3 = [], [], []
