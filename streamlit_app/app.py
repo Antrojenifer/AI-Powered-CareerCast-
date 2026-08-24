@@ -206,6 +206,45 @@ with right:
         st.success("Strong match — no major gaps.")
 
 st.subheader("Actionable improvement plan")
+roadmap = None
+if build_learning_roadmap:
+    try:
+        roadmap = build_learning_roadmap(user_skills, selected)
+    except Exception as e:
+        roadmap = None
+        st.caption(f"Roadmap fallback used.")
+if not roadmap:
+    # Build a simple plan from missing skills so UI is never empty
+    ms = missing or []
+    roadmap = {
+        "summary": f"Personalized plan for {selected} ({len(ms)} skills to improve).",
+        "phases": [
+            {
+                "phase": 1,
+                "title": "Foundation",
+                "duration": "2–4 weeks",
+                "focus": "Close critical skill gaps",
+                "items": [{"skill": s, "action": f"Learn the fundamentals of {s} and practice with small exercises."} for s in ms[:2]]
+                or [{"skill": "Strengthen foundations", "action": f"Revise your current skills for {selected}."}],
+            },
+            {
+                "phase": 2,
+                "title": "Build & Practice",
+                "duration": "4–6 weeks",
+                "focus": "Build applied competence",
+                "items": [{"skill": s, "action": f"Apply {s} in a mini project."} for s in ms[2:5]]
+                or [{"skill": "Hands-on project", "action": f"Build 1–2 projects related to {selected}."}],
+            },
+            {
+                "phase": 3,
+                "title": "Portfolio & Jobs",
+                "duration": "4–8 weeks",
+                "focus": "Prove readiness for roles",
+                "items": [{"skill": "Portfolio", "action": f"Publish projects and align your resume toward {selected} roles."}],
+            },
+        ],
+    }
+
 if roadmap and roadmap.get("phases"):
     st.caption(roadmap.get("summary", ""))
     for ph in roadmap["phases"]:
